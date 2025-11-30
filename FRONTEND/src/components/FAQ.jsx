@@ -6,7 +6,7 @@ const FAQ = () => {
   const faqData = [
     {
       question: "How long does it take to complete a project?",
-      answer: "Typically, we complete projects within 3-5 working days. Complex projects may require additional time depending on the requirements."
+      answer: "Typically, we complete projects within 2-5 working days. Complex projects may require additional time depending on the requirements."
     },
     {
       question: "What is the cost for website development?",
