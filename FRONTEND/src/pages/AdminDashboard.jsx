@@ -213,15 +213,11 @@ const AdminDashboard = () => {
       <Navbar />
       
       <div className="pt-20 p-6">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
           <p className="text-gray-600 mt-2">Manage your IT company operations and client projects</p>
         </div>
-
-        {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Total Revenue */}
           <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
             <div className="flex items-center">
               <div className="p-3 bg-green-100 rounded-lg">
@@ -236,8 +232,6 @@ const AdminDashboard = () => {
               </div>
             </div>
           </div>
-
-          {/* Active Projects */}
           <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
             <div className="flex items-center">
               <div className="p-3 bg-blue-100 rounded-lg">
@@ -269,7 +263,7 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          {/* Team Capacity */}
+         
           <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
             <div className="flex items-center">
               <div className="p-3 bg-orange-100 rounded-lg">
@@ -307,10 +301,10 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Tab Content */}
+        
         {activeTab === 'overview' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Recent Projects */}
+          
             <div className="bg-white rounded-lg shadow-md border border-gray-200">
               <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-900">Recent Projects</h2>
@@ -550,7 +544,7 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        {/* Logout Button */}
+       
         <div className="mt-8 text-center">
           <button
             onClick={handleLogout}

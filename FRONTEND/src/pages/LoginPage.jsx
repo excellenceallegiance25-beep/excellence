@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 
+
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
