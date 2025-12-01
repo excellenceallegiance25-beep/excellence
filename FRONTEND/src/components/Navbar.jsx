@@ -35,16 +35,16 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           
-          {/* Logo */}
+          {}
           <Link 
             to="/" 
             className="text-2xl font-bold text-white hover:text-blue-600 transition-all duration-300"
           >
-            Excellence Allegiance 
-            <h5>PVT LTD</h5>
+            <h1>Excellence Allegiance</h1> 
+            <p>PVT LTD</p>
           </Link>
 
-          {/* Desktop Menu */}
+          {}
           <div className="hidden md:flex space-x-8 items-center">
             <Link 
               to="/" 
@@ -70,7 +70,7 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Our Service Link যোগ করুন */}
+            {}
             <Link 
               to="/services" 
               className={`relative font-medium transition-all duration-300 hover:scale-105 text-white hover:text-blue-600 ${
@@ -101,7 +101,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          
           <div className="md:hidden flex items-center space-x-3">
             <Link 
               to="/login" 
@@ -125,7 +125,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {}
         {isOpen && (
           <div className="md:hidden border-t border-gray-300 py-4">
             <div className="flex flex-col space-y-4">

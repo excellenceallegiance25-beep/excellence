@@ -159,7 +159,7 @@ const ContactPage = () => {
       icon: "📧",
       title: "Email Us",
       details: "contact@myeapi.com",
-      link: "mailto:contact@myeapi.com"
+      link: "contact@myeapi.com"
     },
     {
       icon: "📞",
@@ -171,7 +171,7 @@ const ContactPage = () => {
       icon: "📍",
       title: "Visit Us",
       details: "1/14, 1/16, Nitai Nagar, Mukundapur, Kolkata, West Bengal 700099",
-      link: "#"
+      link: "https://maps.app.goo.gl/SmaYgQN9CFhRcps27"
     },
     {
       icon: "🕒",
@@ -278,7 +278,7 @@ const ContactPage = () => {
               </form>
             </div>
 
-            {/* Contact Information */}
+           
             <div className="space-y-8">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
@@ -303,7 +303,7 @@ const ContactPage = () => {
                 ))}
               </div>
 
-              {/* Interactive Map */}
+              
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Location</h3>
                 <div 
@@ -311,7 +311,7 @@ const ContactPage = () => {
                   className="h-64 rounded-lg overflow-hidden border border-gray-200"
                   style={{ minHeight: '256px' }}
                 >
-                  {/* Fallback content if map doesn't load */}
+                
                   <div className="w-full h-full flex items-center justify-center bg-gray-100">
                     <div className="text-center text-gray-500">
                       <div className="text-4xl mb-2">🗺️</div>

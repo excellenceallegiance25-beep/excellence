@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const navigate = useNavigate();
 
-  // Authentication check
+  
   useEffect(() => {
     const checkAuthentication = () => {
       const user = localStorage.getItem('user');
@@ -37,10 +37,9 @@ const AdminDashboard = () => {
     checkAuthentication();
   }, [navigate]);
 
-  // Sample data load - Real IT company data
   useEffect(() => {
     const loadData = () => {
-      // Real clients data
+      
       const sampleClients = [
         { 
           id: 1, 
@@ -93,8 +92,6 @@ const AdminDashboard = () => {
           revenue: 20000
         }
       ];
-
-      // Real projects data
       const sampleProjects = [
         { 
           id: 1, 
@@ -141,8 +138,6 @@ const AdminDashboard = () => {
           team: ['Sarah W.', 'David B.']
         }
       ];
-
-      // Team members
       const sampleTeam = [
         { id: 1, name: 'John Doe', role: 'Senior Developer', specialization: 'React, Node.js', projects: 3, status: 'Available' },
         { id: 2, name: 'Jane Smith', role: 'UI/UX Designer', specialization: 'Figma, Adobe XD', projects: 2, status: 'Available' },
@@ -150,8 +145,6 @@ const AdminDashboard = () => {
         { id: 4, name: 'Sarah Wilson', role: 'Project Manager', specialization: 'Agile, Scrum', projects: 4, status: 'Available' },
         { id: 5, name: 'David Brown', role: 'Mobile Developer', specialization: 'React Native, Flutter', projects: 2, status: 'Available' }
       ];
-
-      // Sales leads
       const sampleLeads = [
         { id: 1, company: 'StartupXYZ', contact: 'alex@startupxyz.com', service: 'Web App', status: 'Hot', value: 15000, source: 'Referral' },
         { id: 2, company: 'Local Restaurant', contact: 'owner@localrestaurant.com', service: 'Website', status: 'Warm', value: 5000, source: 'Google' },
@@ -210,8 +203,6 @@ const AdminDashboard = () => {
         return 'bg-gray-100 text-gray-800';
     }
   };
-
-  // Calculate stats
   const totalRevenue = clients.reduce((sum, client) => sum + client.revenue, 0);
   const activeProjects = projects.filter(p => p.status !== 'Completed').length;
   const activeClients = clients.filter(c => c.status === 'Active').length;

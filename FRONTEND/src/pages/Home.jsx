@@ -85,7 +85,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section - With Background Image */}
+      
       <section 
         className="py-20 text-white relative"
         style={{

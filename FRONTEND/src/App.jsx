@@ -17,7 +17,6 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import './App.css';
 
-// Simple fallback component
 const FallbackHome = () => (
   <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
     <div className="text-center text-white">

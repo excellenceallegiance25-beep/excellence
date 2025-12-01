@@ -1,4 +1,4 @@
-// src/contexts/AuthContext.jsx
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in from localStorage
     const savedUser = localStorage.getItem('user');
     const registeredUsers = localStorage.getItem('registeredUsers');
     
@@ -20,15 +19,12 @@ export const AuthProvider = ({ children }) => {
       setUser(JSON.parse(savedUser));
     }
     
-    // Initialize registeredUsers if not exists
     if (!registeredUsers) {
       localStorage.setItem('registeredUsers', JSON.stringify([]));
     }
     
     setLoading(false);
   }, []);
-
-  // Check if user is registered
   const isUserRegistered = (email) => {
     try {
       const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
@@ -39,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Verify login credentials
+ 
   const verifyLogin = (email, password) => {
     try {
       const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
@@ -70,12 +66,9 @@ export const AuthProvider = ({ children }) => {
       createdAt: new Date().toISOString()
     };
     
-    // Add to registered users
     const existingUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
     existingUsers.push(newUser);
     localStorage.setItem('registeredUsers', JSON.stringify(existingUsers));
-    
-    // Auto login after registration
     setUser(newUser);
     localStorage.setItem('user', JSON.stringify(newUser));
     

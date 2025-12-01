@@ -93,8 +93,6 @@ const AboutPage = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Right Side - Image */}
               <div className="flex justify-center lg:justify-end">
                 <div className="w-full max-w-md">
                   <img 
@@ -108,8 +106,6 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Mission & Vision */}
       <section className="py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -133,7 +129,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Team Section */}
+     
       <section className="py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -155,7 +151,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Values Section */}
+      
       <section className="py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">

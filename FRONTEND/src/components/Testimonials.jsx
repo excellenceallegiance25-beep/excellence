@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [testimonials, setTestimonials] = useState([]);
-
-  // Default testimonials if no reviews
   const defaultTestimonials = [
     {
       id: 1,

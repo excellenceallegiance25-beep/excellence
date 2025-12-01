@@ -32,7 +32,6 @@ const RegisterPage = () => {
     setError('');
 
     try {
-      // Validation
       if (formData.password !== formData.confirmPassword) {
         throw new Error('Passwords do not match');
       }
@@ -40,13 +39,9 @@ const RegisterPage = () => {
       if (formData.password.length < 6) {
         throw new Error('Password must be at least 6 characters long');
       }
-
-      // Check if user already exists
       if (isUserRegistered(formData.email)) {
         throw new Error('User already exists with this email');
       }
-
-      // Register user
       const userData = {
         name: formData.name,
         email: formData.email,
@@ -67,7 +62,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 relative overflow-hidden">
-      {/* Same animated background as login */}
+     
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-10 w-24 h-24 bg-blue-300 rounded-full opacity-30 animate-bounce" style={{animationDuration: '3s'}}></div>
         <div className="absolute top-20 right-16 w-20 h-20 bg-purple-300 rounded-full opacity-40 animate-ping" style={{animationDuration: '4s'}}></div>
