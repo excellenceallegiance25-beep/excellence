@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Popup from '../components/Popup';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,16 @@ const ContactPage = () => {
     phone: '',
     company: '',
     message: ''
+  });
+  const [popupState, setPopupState] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    type: 'info',
+    onConfirm: null,
+    showCancel: false,
+    confirmText: 'OK',
+    cancelText: 'Cancel'
   });
 
   const handleChange = (e) => {
@@ -19,7 +30,16 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
+    // show popup instead of alert
+    setPopupState({
+      isOpen: true,
+      title: 'Message Sent',
+      message: 'Thank you for your message! We will get back to you soon.',
+      type: 'success',
+      showCancel: false,
+      confirmText: 'Close',
+      onConfirm: () => setPopupState(prev => ({ ...prev, isOpen: false }))
+    });
     setFormData({
       name: '',
       email: '',
@@ -27,6 +47,10 @@ const ContactPage = () => {
       company: '',
       message: ''
     });
+  };
+
+  const closePopup = () => {
+    setPopupState(prev => ({ ...prev, isOpen: false }));
   };
 
   // Map initialization
@@ -335,6 +359,17 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+      <Popup
+        isOpen={popupState.isOpen}
+        title={popupState.title}
+        message={popupState.message}
+        type={popupState.type}
+        onClose={closePopup}
+        onConfirm={popupState.onConfirm}
+        showCancel={popupState.showCancel}
+        confirmText={popupState.confirmText}
+        cancelText={popupState.cancelText}
+      />
     </div>
   );
 };

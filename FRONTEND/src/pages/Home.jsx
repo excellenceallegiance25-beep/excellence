@@ -86,7 +86,7 @@ const Home = () => {
         </div>
       </section>
 
-      
+
       <section 
         className="py-20 text-white relative"
         style={{
@@ -109,11 +109,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section - Simple */}
+    
       <section className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Text Content */}
+          
             <div className="text-left">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
                 Our Achievements
@@ -138,7 +138,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Side - Image */}
+           
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-md">
                 <img 
@@ -152,7 +152,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+     
       <section className="py-20 bg-blue-600 text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -166,7 +166,7 @@ const Home = () => {
           </button>
         </div>
       </section>
-    
+
 
     
     </div>

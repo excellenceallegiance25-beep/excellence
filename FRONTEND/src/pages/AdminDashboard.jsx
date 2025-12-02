@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Popup from '../components/Popup';
 
 const AdminDashboard = () => {
   const [clients, setClients] = useState([]);
@@ -8,6 +9,16 @@ const AdminDashboard = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [leads, setLeads] = useState([]);
   const [activeTab, setActiveTab] = useState('overview');
+  const [popupState, setPopupState] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    type: 'info',
+    onConfirm: null,
+    showCancel: false,
+    confirmText: 'OK',
+    cancelText: 'Cancel'
+  });
   const navigate = useNavigate();
 
   
@@ -162,8 +173,37 @@ const AdminDashboard = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    navigate('/login');
+    setPopupState({
+      isOpen: true,
+      title: 'Logout',
+      message: 'Are you sure you want to logout from the admin panel?',
+      type: 'warning',
+      showCancel: true,
+      confirmText: 'Logout',
+      cancelText: 'Cancel',
+      onConfirm: () => {
+        localStorage.removeItem('user');
+        setPopupState({ ...popupState, isOpen: false });
+        navigate('/login');
+      }
+    });
+  };
+
+  const showPopup = (title, message, type = 'info', confirmCallback = null) => {
+    setPopupState({
+      isOpen: true,
+      title,
+      message,
+      type,
+      showCancel: false,
+      confirmText: 'OK',
+      cancelText: 'Cancel',
+      onConfirm: confirmCallback
+    });
+  };
+
+  const closePopup = () => {
+    setPopupState({ ...popupState, isOpen: false });
   };
 
   const getStatusColor = (status) => {
@@ -211,76 +251,81 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
-      <div className="pt-20 p-6">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-gray-600 mt-2">Manage your IT company operations and client projects</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-            <div className="flex items-center">
-              <div className="p-3 bg-green-100 rounded-lg">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Total Revenue</p>
+
+      <div className="pt-20 p-6 max-w-7xl mx-auto">
+        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+            <p className="text-gray-600 mt-1">Company operations, projects and team overview — modern IT dashboard</p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <input placeholder="Search projects, clients..." className="pl-10 pr-4 py-2 rounded-lg border border-gray-200 bg-white text-sm shadow-sm w-64 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <svg className="w-4 h-4 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35m0 0A7 7 0 1010 17a7 7 0 006.65-4.35z"/></svg>
+            </div>
+            <button onClick={() => navigate('/projects/new')} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700">New Project</button>
+            <button onClick={handleLogout} className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700">Logout</button>
+            <div className="flex items-center ml-2">
+              <div className="w-9 h-9 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">A</div>
+            </div>
+          </div>
+        </header>
+
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white p-5 rounded-lg shadow border border-gray-200">
+            <p className="text-sm text-gray-500">Total Revenue</p>
+            <div className="mt-2 flex items-center justify-between">
+              <div>
                 <p className="text-2xl font-bold text-gray-900">${totalRevenue.toLocaleString()}</p>
                 <p className="text-xs text-green-600">+18% this quarter</p>
               </div>
+              <div className="p-3 bg-green-50 rounded-lg">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2"/></svg>
+              </div>
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-            <div className="flex items-center">
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Active Projects</p>
+
+          <div className="bg-white p-5 rounded-lg shadow border border-gray-200">
+            <p className="text-sm text-gray-500">Active Projects</p>
+            <div className="mt-2 flex items-center justify-between">
+              <div>
                 <p className="text-2xl font-bold text-gray-900">{activeProjects}</p>
-                <p className="text-xs text-green-600">4 in development</p>
+                <p className="text-xs text-gray-500">{projects.length} total</p>
+              </div>
+              <div className="p-3 bg-blue-50 rounded-lg">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6"/></svg>
               </div>
             </div>
           </div>
 
-          {/* Active Clients */}
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-            <div className="flex items-center">
-              <div className="p-3 bg-purple-100 rounded-lg">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Active Clients</p>
+          <div className="bg-white p-5 rounded-lg shadow border border-gray-200">
+            <p className="text-sm text-gray-500">Active Clients</p>
+            <div className="mt-2 flex items-center justify-between">
+              <div>
                 <p className="text-2xl font-bold text-gray-900">{activeClients}</p>
-                <p className="text-xs text-green-600">1 pending approval</p>
+                <p className="text-xs text-gray-500">{clients.length} total</p>
+              </div>
+              <div className="p-3 bg-purple-50 rounded-lg">
+                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857"/></svg>
               </div>
             </div>
           </div>
 
-         
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-            <div className="flex items-center">
-              <div className="p-3 bg-orange-100 rounded-lg">
-                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">Team Capacity</p>
+          <div className="bg-white p-5 rounded-lg shadow border border-gray-200">
+            <p className="text-sm text-gray-500">Team Availability</p>
+            <div className="mt-2 flex items-center justify-between">
+              <div>
                 <p className="text-2xl font-bold text-gray-900">{teamCapacity}/{teamMembers.length}</p>
-                <p className="text-xs text-green-600">Available developers</p>
+                <p className="text-xs text-gray-500">Available / Total</p>
+              </div>
+              <div className="p-3 bg-orange-50 rounded-lg">
+                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4"/></svg>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Navigation Tabs */}
         <div className="mb-6">
           <div className="border-b border-gray-200">
             <nav className="-mb-px flex space-x-8">
@@ -301,57 +346,51 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
-            <div className="bg-white rounded-lg shadow-md border border-gray-200">
-              <div className="px-6 py-4 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Recent Projects</h2>
-              </div>
-              <div className="p-6">
-                {projects.slice(0, 3).map((project) => (
-                  <div key={project.id} className="mb-4 last:mb-0 p-4 border border-gray-200 rounded-lg">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-semibold text-gray-900">{project.name}</h3>
-                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(project.status)}`}>
-                        {project.status}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-2">Client: {project.client}</p>
-                    <div className="flex justify-between items-center">
-                      <div className="w-3/4 bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-blue-600 h-2 rounded-full" 
-                          style={{ width: `${project.progress}%` }}
-                        ></div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 bg-white rounded-lg shadow border border-gray-200 p-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Project Health</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {projects.map((project) => (
+                  <div key={project.id} className="p-4 border border-gray-100 rounded-lg hover:shadow-sm transition">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h3 className="font-semibold text-gray-900">{project.name}</h3>
+                        <p className="text-xs text-gray-500">Client: {project.client} • {project.type}</p>
                       </div>
-                      <span className="text-sm text-gray-500">{project.progress}%</span>
+                      <span className={`text-xs font-semibold rounded-full px-2 py-1 ${getStatusColor(project.status)}`}>{project.status}</span>
+                    </div>
+                    <div className="mt-3">
+                      <div className="w-full bg-gray-100 rounded-full h-2">
+                        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-2 rounded-full" style={{ width: `${project.progress}%` }}></div>
+                      </div>
+                      <div className="flex justify-between items-center mt-2">
+                        <small className="text-xs text-gray-500">Deadline: {project.deadline}</small>
+                        <small className="text-xs text-gray-500">{project.progress}%</small>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Recent Clients */}
-            <div className="bg-white rounded-lg shadow-md border border-gray-200">
-              <div className="px-6 py-4 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-900">Recent Clients</h2>
-              </div>
-              <div className="p-6">
-                {clients.slice(0, 4).map((client) => (
-                  <div key={client.id} className="flex items-center justify-between mb-4 last:mb-0 p-3 border border-gray-200 rounded-lg">
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{client.name}</h3>
-                      <p className="text-sm text-gray-600">{client.industry}</p>
+            <aside className="bg-white rounded-lg shadow border border-gray-200 p-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Team Snapshot</h2>
+              <div className="space-y-4">
+                {teamMembers.map((m) => (
+                  <div key={m.id} className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-sm font-semibold text-gray-700">{m.name.split(' ').map(n=>n[0]).slice(0,2).join('')}</div>
+                      <div>
+                        <div className="text-sm font-medium text-gray-900">{m.name}</div>
+                        <div className="text-xs text-gray-500">{m.role}</div>
+                      </div>
                     </div>
-                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(client.status)}`}>
-                      {client.status}
-                    </span>
+                    <div className="text-sm font-semibold text-gray-700">{m.status}</div>
                   </div>
                 ))}
               </div>
-            </div>
+            </aside>
           </div>
         )}
 
@@ -359,7 +398,9 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-lg shadow-md border border-gray-200">
             <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-900">Client Management</h2>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              <button 
+                onClick={() => showPopup('Add New Client', 'Client added successfully!', 'success')}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
                 Add New Client
               </button>
             </div>
@@ -393,8 +434,12 @@ const AdminDashboard = () => {
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <button className="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
-                        <button className="text-green-600 hover:text-green-900">View</button>
+                        <button 
+                          onClick={() => showPopup('Edit Client', `Editing client: ${client.name}`, 'info')}
+                          className="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                        <button 
+                          onClick={() => showPopup('View Client', `Client: ${client.name}\nEmail: ${client.email}\nIndustry: ${client.industry}`, 'info')}
+                          className="text-green-600 hover:text-green-900">View</button>
                       </td>
                     </tr>
                   ))}
@@ -408,7 +453,9 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-lg shadow-md border border-gray-200">
             <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-900">Project Management</h2>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              <button 
+                onClick={() => showPopup('Create New Project', 'New project created successfully!', 'success')}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
                 Create New Project
               </button>
             </div>
@@ -466,7 +513,9 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-lg shadow-md border border-gray-200">
             <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-900">Team Management</h2>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              <button 
+                onClick={() => showPopup('Add Team Member', 'Team member added successfully!', 'success')}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
                 Add Team Member
               </button>
             </div>
@@ -507,7 +556,9 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-lg shadow-md border border-gray-200">
             <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-900">Sales Leads</h2>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              <button 
+                onClick={() => showPopup('Add New Lead', 'New sales lead added successfully!', 'success')}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
                 Add New Lead
               </button>
             </div>
@@ -556,6 +607,18 @@ const AdminDashboard = () => {
             Logout from Admin Panel
           </button>
         </div>
+        
+        <Popup
+          isOpen={popupState.isOpen}
+          title={popupState.title}
+          message={popupState.message}
+          type={popupState.type}
+          onClose={closePopup}
+          onConfirm={popupState.onConfirm}
+          showCancel={popupState.showCancel}
+          confirmText={popupState.confirmText}
+          cancelText={popupState.cancelText}
+        />
       </div>
     </div>
   );

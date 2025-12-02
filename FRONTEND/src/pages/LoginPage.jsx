@@ -1,5 +1,6 @@
 // pages/LoginPage.js
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import Popup from '../components/Popup';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Navbar from '../components/Navbar';
@@ -15,8 +16,19 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [popupState, setPopupState] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    type: 'info',
+    onConfirm: null,
+    showCancel: false,
+    confirmText: 'OK',
+    cancelText: 'Cancel'
+  });
   const navigate = useNavigate();
   const { login, isUserRegistered, verifyLogin } = useAuth();
+  const redirectTimeout = useRef(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -52,17 +64,69 @@ const LoginPage = () => {
       };
 
       login(loginData);
-      
-      alert('Login successful!');
-     
-navigate('/admin-dashboard'); 
+      // show success popup and auto-redirect shortly (keeps popup visible)
+      setPopupState({
+        isOpen: true,
+        title: 'Login successful',
+        message: 'Welcome back! Redirecting to admin dashboard...',
+        type: 'success',
+        showCancel: false,
+        confirmText: 'Continue',
+        onConfirm: () => {
+          if (redirectTimeout.current) {
+            clearTimeout(redirectTimeout.current);
+            redirectTimeout.current = null;
+          }
+          setPopupState(prev => ({ ...prev, isOpen: false }));
+          navigate('/admin-dashboard');
+        }
+      });
+
+      // auto-redirect after ~800ms so behavior matches previous flow
+      redirectTimeout.current = setTimeout(() => {
+        setPopupState(prev => ({ ...prev, isOpen: false }));
+        redirectTimeout.current = null;
+        navigate('/admin-dashboard');
+      }, 800);
       
     } catch (err) {
       setError(err.message);
+      // show error popup
+      setPopupState({
+        isOpen: true,
+        title: 'Login failed',
+        message: err.message,
+        type: 'error',
+        showCancel: false,
+        confirmText: 'Close',
+        onConfirm: () => {
+          if (redirectTimeout.current) {
+            clearTimeout(redirectTimeout.current);
+            redirectTimeout.current = null;
+          }
+          setPopupState(prev => ({ ...prev, isOpen: false }));
+        }
+      });
     } finally {
       setIsLoading(false);
     }
   };
+
+  const closePopup = () => {
+    if (redirectTimeout.current) {
+      clearTimeout(redirectTimeout.current);
+      redirectTimeout.current = null;
+    }
+    setPopupState(prev => ({ ...prev, isOpen: false }));
+  };
+
+  useEffect(() => {
+    return () => {
+      if (redirectTimeout.current) {
+        clearTimeout(redirectTimeout.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 relative overflow-hidden">

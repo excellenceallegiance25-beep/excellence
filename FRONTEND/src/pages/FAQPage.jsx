@@ -67,7 +67,7 @@ const FAQPage = () => {
     <div className="min-h-screen bg-white">
       <Navbar />
       
-      {/* Hero Section */}
+    
       <section className="pt-32 pb-20 bg-gradient-to-br from-green-600 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -79,7 +79,7 @@ const FAQPage = () => {
         </div>
       </section>
 
-      {/* FAQ Content */}
+    
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
@@ -131,7 +131,7 @@ const FAQPage = () => {
             ))}
           </div>
 
-          {/* Contact CTA */}
+          
           <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white">
               <h3 className="text-3xl font-bold mb-4">Still have questions?</h3>

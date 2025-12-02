@@ -22,10 +22,10 @@ const CookiePolicy = () => {
       <div className="pt-24 pb-12 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Cookie Policy Card */}
+         
           <div className="bg-white rounded-lg shadow-md border border-gray-200 p-8">
             
-            {/* Header */}
+            
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,7 +40,7 @@ const CookiePolicy = () => {
               </p>
             </div>
 
-            {/* Content */}
+          
             <div className="prose prose-lg max-w-none">
               <div className="space-y-8">
                 <section>
@@ -177,7 +177,6 @@ const CookiePolicy = () => {
                 </section>
               </div>
 
-              {/* Important Note */}
               <div className="mt-12 p-6 bg-yellow-50 rounded-lg border border-yellow-200">
                 <h3 className="text-lg font-semibold text-yellow-800 mb-2">Important Note</h3>
                 <p className="text-yellow-700">
@@ -186,7 +185,7 @@ const CookiePolicy = () => {
                 </p>
               </div>
 
-              {/* Back to Home Link */}
+             
               <div className="mt-8 text-center">
                 <Link 
                   to="/" 

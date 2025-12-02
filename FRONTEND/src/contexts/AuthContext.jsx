@@ -54,6 +54,45 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('user', JSON.stringify(userData));
   };
 
+
+  const generateOTP = (identifier, ttlMinutes = 5) => {
+    try {
+      const code = Math.floor(100000 + Math.random() * 900000).toString();
+      const expiresAt = Date.now() + ttlMinutes * 60 * 1000;
+      const otps = JSON.parse(localStorage.getItem('otps') || '{}');
+      otps[identifier] = { code, expiresAt };
+      localStorage.setItem('otps', JSON.stringify(otps));
+      
+      console.info(`[OTP] Sent to ${identifier}: ${code} (expires in ${ttlMinutes} min)`);
+      return code;
+    } catch (error) {
+      console.error('Error generating OTP', error);
+      return null;
+    }
+  };
+
+  const verifyOTP = (identifier, code) => {
+    try {
+      const otps = JSON.parse(localStorage.getItem('otps') || '{}');
+      const record = otps[identifier];
+      if (!record) return false;
+      if (Date.now() > record.expiresAt) {
+        delete otps[identifier];
+        localStorage.setItem('otps', JSON.stringify(otps));
+        return false;
+      }
+      if (record.code === String(code)) {
+        delete otps[identifier];
+        localStorage.setItem('otps', JSON.stringify(otps));
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Error verifying OTP', error);
+      return false;
+    }
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
@@ -83,6 +122,7 @@ export const AuthProvider = ({ children }) => {
     isUserRegistered,
     verifyLogin,
     loading
+    , generateOTP, verifyOTP
   };
 
   return (

@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
@@ -11,52 +10,16 @@ import Contact from './pages/ContactPage';
 import FAQ from './pages/FAQPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-<<<<<<< HEAD
- import { OtpProvider } from './contexts/OtpContext'; 
-=======
->>>>>>> db0c6ed8bfa88effc4dd21b8c4c742cbcc3fc4cd
+import { OtpProvider } from './contexts/OtpContext'; 
 import AdminDashboard from './pages/AdminDashboard';
+import CreateProject from './pages/CreateProject';
 import CookiePolicy from './pages/CookiePolicy';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
-<<<<<<< HEAD
 import Testimonials from './components/Testimonials';
+import AIChatbot from './components/AIChatbot';
 import './App.css';
 
-function App() {
-  return (
-    <AuthProvider>
-      <OtpProvider> 
-        <Router>
-          <div className="App">
-            <Navbar />
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/login" element={<LoginPage />} />
-                
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/admin-dashboard" element={<AdminDashboard />} />
-                <Route path="/cookie-policy" element={<CookiePolicy />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms-of-service" element={<TermsOfService />} />
-                <Route path="/testimonials" element={<Testimonials />} />
-                
-                
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </Router>
-      </OtpProvider>
-=======
-import './App.css';
-
-// Simple fallback component
 const FallbackHome = () => (
   <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
     <div className="text-center text-white">
@@ -77,30 +40,40 @@ const FallbackHome = () => (
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/admin-dashboard" element={<AdminDashboard />} />
-              <Route path="/cookie-policy" element={<CookiePolicy />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-          
-              <Route path="*" element={<FallbackHome />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
->>>>>>> db0c6ed8bfa88effc4dd21b8c4c742cbcc3fc4cd
+      <OtpProvider> 
+        <Router>
+          <div className="App">
+            {/* Navbar সবসময় উপরে থাকবে */}
+            <Navbar />
+            
+            {/* Main Content */}
+            <main className="relative">
+              {/* AI Chatbot - এটা সবসময় দেখাবে (floating) */}
+              <AIChatbot />
+              
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/admin-dashboard" element={<AdminDashboard />} />
+                <Route path="/projects/new" element={<CreateProject />} />
+                <Route path="/cookie-policy" element={<CookiePolicy />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/testimonials" element={<Testimonials />} />
+                <Route path="*" element={<FallbackHome />} />
+              </Routes>
+            </main>
+            
+            {/* Footer সবসময় নিচে থাকবে */}
+            <Footer />
+          </div>
+        </Router>
+      </OtpProvider>
     </AuthProvider>
   );
 }
