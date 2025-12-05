@@ -25,6 +25,69 @@ export const AuthProvider = ({ children }) => {
     
     setLoading(false);
   }, []);
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+
+  const apiRegister = async (userData) => {
+    try {
+      const res = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      });
+      return await res.json();
+    } catch (error) {
+      console.error('API register error', error);
+      return { success: false, message: error.message };
+    }
+  };
+
+  const apiLogin = async (credentials) => {
+    try {
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials)
+      });
+      return await res.json();
+    } catch (error) {
+      console.error('API login error', error);
+      return { success: false, message: error.message };
+    }
+  };
+
+  const apiSendOtp = async (email, name) => {
+    try {
+      const res = await fetch(`${API_URL}/auth/send-otp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name })
+      });
+      return await res.json();
+    } catch (error) {
+      console.error('API send-otp error', error);
+      return { success: false, message: error.message };
+    }
+  };
+
+  const apiVerifyOtp = async (email, otp) => {
+    try {
+      const res = await fetch(`${API_URL}/auth/verify-otp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, otp })
+      });
+      return await res.json();
+    } catch (error) {
+      console.error('API verify-otp error', error);
+      return { success: false, message: error.message };
+    }
+  };
+ 
+  const sendOtp = (email, name) => apiSendOtp(email, name);
+  const verifyOtpApi = (email, otp) => apiVerifyOtp(email, otp);
+  const registerApi = (userData) => apiRegister(userData);
+  const loginApi = (credentials) => apiLogin(credentials);
   const isUserRegistered = (email) => {
     try {
       const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
@@ -121,8 +184,13 @@ export const AuthProvider = ({ children }) => {
     register,
     isUserRegistered,
     verifyLogin,
-    loading
-    , generateOTP, verifyOTP
+    loading,
+    generateOTP,
+    verifyOTP,
+    apiRegister,
+    apiLogin,
+    apiSendOtp,
+    apiVerifyOtp
   };
 
   return (

@@ -6,20 +6,16 @@ import Footer from '../components/Footer';
 const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 relative overflow-hidden">
-      {/* Crazy Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Moving Circles */}
         <div className="absolute top-10 left-10 w-24 h-24 bg-blue-300 rounded-full opacity-30 animate-bounce" style={{animationDuration: '3s'}}></div>
         <div className="absolute top-20 right-16 w-20 h-20 bg-purple-300 rounded-full opacity-40 animate-ping" style={{animationDuration: '4s'}}></div>
         <div className="absolute bottom-32 left-1/4 w-28 h-28 bg-pink-300 rounded-full opacity-25 animate-pulse" style={{animationDuration: '2s'}}></div>
         <div className="absolute bottom-20 right-1/3 w-16 h-16 bg-cyan-300 rounded-full opacity-35 animate-bounce" style={{animationDuration: '5s'}}></div>
         
-        {/* Floating and Rotating Shapes */}
         <div className="absolute top-1/3 left-1/4 w-12 h-12 bg-yellow-300 rounded-lg opacity-30 animate-spin" style={{animationDuration: '8s'}}></div>
         <div className="absolute top-1/2 right-1/4 w-14 h-14 bg-green-300 rounded-lg opacity-25 animate-pulse" style={{animationDuration: '3s'}}></div>
         <div className="absolute top-3/4 left-1/3 w-10 h-10 bg-red-300 rounded-full opacity-40 animate-bounce" style={{animationDuration: '6s'}}></div>
         
-        {/* Wavy Lines */}
         <div className="absolute top-0 left-0 w-full h-2 bg-blue-200 opacity-20 animate-pulse"></div>
         <div className="absolute bottom-0 left-0 w-full h-2 bg-purple-200 opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
       </div>
@@ -29,10 +25,8 @@ const TermsOfService = () => {
       <div className="pt-24 pb-12 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Terms of Service Card */}
           <div className="bg-white rounded-lg shadow-md border border-gray-200 p-8">
             
-            {/* Header */}
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
                 Terms of Service
@@ -42,7 +36,6 @@ const TermsOfService = () => {
               </p>
             </div>
 
-            {/* Introduction */}
             <div className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">Welcome to Excellence Allegiance</h2>
               <p className="text-gray-700 mb-4">
@@ -51,9 +44,7 @@ const TermsOfService = () => {
               </p>
             </div>
 
-            {/* Sections */}
             <div className="space-y-8">
-              {/* Acceptance of Terms */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">1. Acceptance of Terms</h3>
                 <p className="text-gray-700 mb-2">
@@ -62,7 +53,6 @@ const TermsOfService = () => {
                 </p>
               </section>
 
-              {/* User Accounts */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">2. User Accounts</h3>
                 <div className="space-y-2">
@@ -78,7 +68,6 @@ const TermsOfService = () => {
                 </div>
               </section>
 
-              {/* Services */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">3. Services</h3>
                 <p className="text-gray-700 mb-2">
@@ -87,7 +76,6 @@ const TermsOfService = () => {
                 </p>
               </section>
 
-              {/* User Responsibilities */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">4. User Responsibilities</h3>
                 <div className="space-y-2">
@@ -107,7 +95,6 @@ const TermsOfService = () => {
                 </div>
               </section>
 
-              {/* Intellectual Property */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">5. Intellectual Property</h3>
                 <p className="text-gray-700 mb-2">
@@ -115,7 +102,6 @@ const TermsOfService = () => {
                 </p>
               </section>
 
-              {/* Payments and Billing */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">6. Payments and Billing</h3>
                 <div className="space-y-2">
@@ -131,7 +117,6 @@ const TermsOfService = () => {
                 </div>
               </section>
 
-              {/* Termination */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">7. Termination</h3>
                 <p className="text-gray-700 mb-2">
@@ -140,7 +125,7 @@ const TermsOfService = () => {
                 </p>
               </section>
 
-              {/* Disclaimer of Warranties */}
+             
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">8. Disclaimer of Warranties</h3>
                 <p className="text-gray-700 mb-2">
@@ -149,15 +134,13 @@ const TermsOfService = () => {
                 </p>
               </section>
 
-              {/* Limitation of Liability */}
+             
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">9. Limitation of Liability</h3>
                 <p className="text-gray-700 mb-2">
                   To the fullest extent permitted by law, Excellence Allegiance shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.
                 </p>
               </section>
-
-              {/* Changes to Terms */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">10. Changes to Terms</h3>
                 <p className="text-gray-700 mb-2">
@@ -165,16 +148,12 @@ const TermsOfService = () => {
                   We will notify users of significant changes through our platform or via email.
                 </p>
               </section>
-
-              {/* Governing Law */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">11. Governing Law</h3>
                 <p className="text-gray-700 mb-2">
                   These Terms shall be governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.
                 </p>
               </section>
-
-              {/* Contact Information */}
               <section>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">12. Contact Information</h3>
                 <p className="text-gray-700 mb-2">
@@ -202,8 +181,6 @@ const TermsOfService = () => {
   </div>
 </section>
             </div>
-
-            {/* Agreement Section */}
             <div className="mt-12 p-6 bg-blue-50 rounded-lg border border-blue-200">
               <h3 className="text-lg font-semibold text-blue-800 mb-2">Agreement</h3>
               <p className="text-blue-700">
@@ -211,7 +188,7 @@ const TermsOfService = () => {
               </p>
             </div>
 
-            {/* Back to Register Link */}
+          
             <div className="mt-8 text-center">
               <Link 
                 to="/register" 
@@ -225,9 +202,7 @@ const TermsOfService = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      
+      </div> 
     </div>
   );
 };

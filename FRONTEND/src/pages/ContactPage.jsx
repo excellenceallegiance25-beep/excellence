@@ -30,7 +30,6 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // show popup instead of alert
     setPopupState({
       isOpen: true,
       title: 'Message Sent',
@@ -53,7 +52,6 @@ const ContactPage = () => {
     setPopupState(prev => ({ ...prev, isOpen: false }));
   };
 
-  // Map initialization
   useEffect(() => {
     const loadGoogleMaps = () => {
       if (!window.google) {
@@ -152,7 +150,6 @@ const ContactPage = () => {
 
       const map = new window.google.maps.Map(document.getElementById('map'), mapOptions);
       
-      // Add marker
       const marker = new window.google.maps.Marker({
         position: { lat: 22.499320, lng: 88.363450 },
         map: map,
@@ -160,7 +157,6 @@ const ContactPage = () => {
         animation: window.google.maps.Animation.DROP
       });
 
-      // Add info window
       const infoWindow = new window.google.maps.InfoWindow({
         content: `
           <div style="padding: 10px;">
@@ -207,7 +203,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-br from-green-900 to-purple-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -219,12 +214,10 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Contact Form & Info */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
-            {/* Contact Form */}
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-6">

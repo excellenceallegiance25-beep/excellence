@@ -6,8 +6,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
-      {/* Header Section */}
+     
       <section className="pt-32 pb-20 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Privacy Policy</h1>
@@ -21,19 +20,19 @@ const PrivacyPolicy = () => {
         </div>
       </section>
 
-      {/* Privacy Policy Content */}
+     
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
             <div className="prose prose-lg max-w-none">
-              {/* Introduction */}
+             
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">1. Introduction</h2>
                 <p className="text-gray-600 mb-4">
-                  Welcome to Excellence Allegiance ("we," "our," or "us"). We are committed to protecting 
+                  Welcome to Excellence Allegiance. We are committed to protecting 
                   your personal information and your right to privacy. If you have any questions or concerns 
                   about this privacy policy or our practices with regard to your personal information, 
-                  please contact us at privacy@excellenceallegiance.com.
+                  please contact us at contact@myeapi.com.
                 </p>
                 <p className="text-gray-600">
                   This Privacy Policy applies to all information collected through our website and any 
@@ -41,7 +40,7 @@ const PrivacyPolicy = () => {
                 </p>
               </div>
 
-              {/* Information We Collect */}
+             
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">2. Information We Collect</h2>
                 
@@ -68,7 +67,7 @@ const PrivacyPolicy = () => {
                 </ul>
               </div>
 
-              {/* How We Use Your Information */}
+    
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">3. How We Use Your Information</h2>
                 <p className="text-gray-600 mb-4">
@@ -83,8 +82,6 @@ const PrivacyPolicy = () => {
                   <li>To detect, prevent and address technical issues</li>
                 </ul>
               </div>
-
-              {/* Data Sharing */}
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">4. Data Sharing and Disclosure</h2>
                 <p className="text-gray-600 mb-4">
@@ -96,8 +93,6 @@ const PrivacyPolicy = () => {
                   <li><strong>Legal Requirements:</strong> We may disclose your information where required by law.</li>
                 </ul>
               </div>
-
-              {/* Data Security */}
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">5. Data Security</h2>
                 <p className="text-gray-600 mb-4">
@@ -106,8 +101,6 @@ const PrivacyPolicy = () => {
                   cannot guarantee that the internet itself is 100% secure.
                 </p>
               </div>
-
-              {/* Your Rights */}
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">6. Your Privacy Rights</h2>
                 <p className="text-gray-600 mb-4">
@@ -122,8 +115,6 @@ const PrivacyPolicy = () => {
                   <li>Object to the processing of your data</li>
                 </ul>
               </div>
-
-              {/* Cookies */}
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">7. Cookies and Tracking Technologies</h2>
                 <p className="text-gray-600 mb-4">
@@ -132,8 +123,6 @@ const PrivacyPolicy = () => {
                   indicate when a cookie is being sent.
                 </p>
               </div>
-
-              {/* Policy Updates */}
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">8. Updates to This Policy</h2>
                 <p className="text-gray-600 mb-4">
@@ -141,8 +130,6 @@ const PrivacyPolicy = () => {
                   by an updated "Last updated" date and the updated version will be effective as soon as it is accessible.
                 </p>
               </div>
-
-              {/* Contact Information */}
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">9. Contact Us</h2>
                 <p className="text-gray-600 mb-4">
@@ -150,19 +137,17 @@ const PrivacyPolicy = () => {
                 </p>
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <p className="text-gray-700 font-semibold">Excellence Allegiance Pvt Ltd</p>
-                  <p className="text-gray-600">Email: privacy@excellenceallegiance.com</p>
-                  <p className="text-gray-600">Phone: +1 (555) 123-4567</p>
-                  <p className="text-gray-600">Address: 123 Business Avenue, Suite 100, City, State 12345</p>
+                  <p className="text-gray-600">Email: contact@myeapi.com</p>
+                  <p className="text-gray-600">Phone:6289534780</p>
+                  <p className="text-gray-600">Address: 1/16, Netai nagar, Singhabari road, Mukundapur, Kolkata-700099, West Bengal, India</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 };
 
-export default PrivacyPolicy;
+export default PrivacyPolicy; 
