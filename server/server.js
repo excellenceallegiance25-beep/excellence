@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000; // ⬅️ এই লাইনটা ঠিক করো
 
 // Middleware
 app.use(cors({
@@ -47,12 +47,16 @@ const sendWelcomeEmail = async (email, name) => {
 };
 
 // MongoDB connection
-const MONGODB_URI = process.env.MONGODB_URI || 
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('✅ '))
-.catch((error) => console.log('❌ MongoDB connection error:', error));
+// MongoDB connection
+try {
+  await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  console.log('✅ MongoDB connected successfully');
+} catch (error) {
+  console.log('❌ MongoDB connection error:', error);
+}
 
 
 const UserSchema = new mongoose.Schema({
