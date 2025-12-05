@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 10000; // ⬅️ এই লাইনটা ঠিক করো
+const PORT = process.env.PORT || 10000;
 
 // Middleware
 app.use(cors({
@@ -47,17 +47,12 @@ const sendWelcomeEmail = async (email, name) => {
 };
 
 // MongoDB connection
-// MongoDB connection
-try {
-  await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  console.log('✅ MongoDB connected successfully');
-} catch (error) {
-  console.log('❌ MongoDB connection error:', error);
-}
-
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('✅ MongoDB connected successfully'))
+.catch((error) => console.log('❌ MongoDB connection error:', error));
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -206,7 +201,7 @@ app.post('/api/auth/send-otp', async (req, res) => {
     return res.json({
       success: true,
       message: 'OTP generated successfully',
-      otp: otp, // Development এর জন্য OTP return করছি
+      otp: otp,
       expiresIn: '10 minutes',
       emailPreview: emailResult.preview
     });
@@ -333,7 +328,7 @@ app.post('/api/auth/register', async (req, res) => {
       email,
       password: hashedPassword,
       role: 'user',
-      isVerified: true // Direct registration without OTP
+      isVerified: true
     });
 
     await user.save();
@@ -515,8 +510,8 @@ app.listen(PORT, () => {
   🚀 Server Information:
   =====================
   ✅ Server running on: http://localhost:${PORT}
-  📊 MongoDB: ${MONGODB_URI}
-  🔐 JWT Secret: ${JWT_SECRET ? 'Set ✓' : 'Not set ✗'}
+  📊 MongoDB: ${process.env.MONGODB_URI ? 'Connected ✓' : 'Not set ✗'}
+  🔐 JWT Secret: ${process.env.JWT_SECRET ? 'Set ✓' : 'Not set ✗'}
   🌍 Environment: ${process.env.NODE_ENV || 'development'}
   
   📍 Available Endpoints:
