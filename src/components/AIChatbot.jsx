@@ -867,7 +867,7 @@ Please ask about any of these companies, or use the quick action buttons below f
       {isOpen && (
         <div className="absolute bottom-16 left-0 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 animate-slide-up">
           {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-blue-600to-purple-600 rounded-t-xl">
+          <div className="p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-t-xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full overflow-hidden mr-3 border-2 border-purple-500 bg-white">
